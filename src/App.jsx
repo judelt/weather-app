@@ -2,23 +2,23 @@ import { useState } from "react";
 import useApplicationData from "./hooks/useApplicationData";
 import "./App.css";
 
-require("dotenv").config();
-
 function App() {
   const { searchByCity, searchByZip } = useApplicationData();
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
-  function handleKeyPressCity(e, city) {
+  function handleKeyPressCity(e) {
     if (e.key === "Enter") {
-      searchByCity(e, city);
+      console.log(city)
+      searchByCity(city);
       setCity("");
     }
   }
 
-  function handleKeyPressZip(e, zip) {
+  function handleKeyPressZip(e) {
     if (e.key === "Enter") {
-      searchByZip(e, zip);
+      console.log(zip);
+      searchByZip(zip);
       setZip("");
     }
   }
@@ -31,17 +31,15 @@ function App() {
       <input
         type="text"
         placeholder="Search by city..."
-        value={city}
         onChange={(e) => setCity(e.target.value)}
+        value={city}
         onKeyPress={handleKeyPressCity}
       ></input>
       <input
         type="text"
         placeholder="Search by zip code..."
+        onChange={(e) => setZip(e.target.value)}
         value={zip}
-        onChange={(e) => {
-          setZip(e.target.value);
-        }}
         onKeyPress={handleKeyPressZip}
       ></input>
     </div>
