@@ -12,14 +12,17 @@
   text-align: center;
   background-color: var(--intital);
   transition: 0.4s ease-out;
-  height: 100%;
 }
 
+.circularProgress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .search-box {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items:center;
+  justify-content: center;
   padding: 5% 5% 0 5%;
   margin-bottom: 2vw;
 }
@@ -37,7 +40,7 @@
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
 
-  font-size: 20px;
+  font-size: 1em;
 
   transition: 0.4s ease;
 }
@@ -56,45 +59,40 @@
   font-size: 1em;
   font-weight: 300;
 }
-
-.weather-container .temp {
-  position: relative;
-  display: inline-block;
-  /* margin-top: 30px auto; */
-  /* background-color: rgba(255, 255, 255, 0.2); */
-  border-radius: 16px;
-
-  font-size: 102px;
+.current-weather-container .temp {
+  font-size: 7em;
   font-weight: 300;
-
-  text-align: center;
+  margin-bottom: -2vh;
 }
 
-.weather-container .description {
-   font-size: 1.5em;
+.current-weather-container .description {
+  padding-top: 2vh;
+  font-size: 1.5em;
   font-weight: 300;
 }
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.temp-min-max {
+  display: flex;
+  justify-content: center;
+  /* max-width: 20vw; */
+}
+.temp-max {
+  padding: 0 1vw;
+}
+.temp-min {
+  padding: 0 1vw;
+}
+.stats {
+  padding-top: 2vh;
+  display: flex;
+  justify-content: center;
+}
+.stat {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-
-.App-link {
-  color: #61dafb;
+  padding: 0 1vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.stat p {
+  margin: 0.5vh;
+} 
