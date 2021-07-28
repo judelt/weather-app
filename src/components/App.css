@@ -1,3 +1,4 @@
+/* Mobile Styles & Tablet Styles */
 .App {
   padding-top: 2vh;
   text-align: center;
@@ -22,7 +23,7 @@
   outline: none;
 
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
+  border-radius: 0.5vw;
 
   font-size: 1em;
 
@@ -58,7 +59,6 @@
 .temp-min-max {
   display: flex;
   justify-content: center;
-  /* max-width: 20vw; */
 }
 .temp-max {
   padding: 0 1vw;
@@ -76,11 +76,10 @@
   flex-direction: column;
   padding: 0 1vw;
 }
-
 .stat p {
   margin: 0.5vh;
-} 
-.forecast{
+}
+.forecast {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,21 +87,33 @@
   margin-top: 2vh;
 }
 .forecast-container {
-  width: 80vw;
   padding: 4vw;
-  margin-bottom: 4vw;
+  margin-bottom: 2vw;
 
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+  border-radius: 1vh;
 }
 .forecast-container .date {
   font-size: 1.5em;
   font-weight: 400;
 }
 .forecast-container-days {
-  padding: 2vh;
-  border-bottom: 1px solid #F8F8FF;
+  border-bottom: 1px solid #f8f8ff;
+  padding: 2vw 0;
 }
 .error {
-  color:rgb(186, 55, 32);
+  color: rgb(186, 55, 32);
 }
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  *{
+    font-size: medium;
+  }
+  .search-box .search-bar {
+    font-size: 1.2em;
+  }
+  .forecast-container-days {
+    padding: 2vw;
+  }
+} 
