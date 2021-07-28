@@ -1,4 +1,4 @@
-export function dateBuilder(i) {
+export function dateBuilder(i?: number): string {
   const today = new Date();
   if (i) {
     const newDate = new Date(today);
