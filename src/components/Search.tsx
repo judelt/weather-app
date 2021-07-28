@@ -1,18 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 
-function Search({ searchByCity, searchByZip }) {
+interface ISearch {
+  searchByCity: (city: string) => void;
+  searchByZip: (zip: string)=> void;
+}
+
+function Search({ searchByCity, searchByZip }: ISearch) {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
-  function handleKeyPressCity(e) {
+  function handleKeyPressCity(e: any) {
     if (e.key === "Enter") {
       searchByCity(city);
       setCity("");
     }
   }
 
-  function handleKeyPressZip(e) {
+  function handleKeyPressZip(e: any) {
     if (e.key === "Enter") {
       searchByZip(zip);
       setZip("");

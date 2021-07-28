@@ -1,17 +1,28 @@
 import { dateBuilder } from "../helpers/helpers";
 
+interface ICurrentWeather {
+  cityName: string;
+  country: string;
+  temp: number;
+  description: string;
+  temp_max: number;
+  temp_min: number;
+  humidity: number;
+  wind_speed: number;
+  precipitation: number;
+}
+
 function CurrentWeather({
   cityName,
   country,
   temp,
   description,
-  icon,
   temp_max,
   temp_min,
   humidity,
   wind_speed,
   precipitation,
-}) {
+}: ICurrentWeather) {
   return (
     <>
       <div className="location">
