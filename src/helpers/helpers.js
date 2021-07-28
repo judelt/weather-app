@@ -1,32 +1,10 @@
-export function dateBuilder(d) {
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+export function dateBuilder(i) {
+  const today = new Date();
+  if (i) {
+    const newDate = new Date(today);
+    newDate.setDate(newDate.getDate() + i);
+    return newDate.toDateString();
+  }
 
-  let day = days[d.getDay()];
-  let date = d.getDate();
-  let month = months[d.getMonth()];
-  let year = d.getFullYear();
-
-  return `${day} ${date} ${month} ${year}`;
+  return today.toDateString();
 }
