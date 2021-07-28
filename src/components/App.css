@@ -9,6 +9,9 @@
   align-items: center;
   height: 100vh;
 }
+.search-box {
+  margin-bottom: 2vh;
+}
 .search-box .search-bar {
   padding: 1vw;
   margin: 0.5vw;
@@ -97,7 +100,8 @@
   font-weight: 400;
 }
 .forecast-container-days {
-  padding-bottom: 3vh;
+  padding: 2vh;
+  border-bottom: 1px solid #F8F8FF;
 }
 .error {
   color:rgb(186, 55, 32);

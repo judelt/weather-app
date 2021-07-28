@@ -7,7 +7,6 @@ function Search({ searchByCity, searchByZip }) {
 
   function handleKeyPressCity(e) {
     if (e.key === "Enter") {
-      console.log(city);
       searchByCity(city);
       setCity("");
     }
@@ -15,7 +14,6 @@ function Search({ searchByCity, searchByZip }) {
 
   function handleKeyPressZip(e) {
     if (e.key === "Enter") {
-      console.log(zip);
       searchByZip(zip);
       setZip("");
     }

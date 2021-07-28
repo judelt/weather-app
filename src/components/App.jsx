@@ -19,7 +19,6 @@ const zipApi = {
 function App() {
   const [state, setState] = useState({});
   const [error, setError] = useState(false);
-  const [zipCity, setZipCity] = useState("");
 
   //Default location. Loads on first render
   useEffect(() => {
@@ -59,7 +58,6 @@ function App() {
   }
 
   async function searchByCity(city) {
-    console.log('searchByCity')
     try {
       const { lon, lat } = await getCurrentWeatherandCoordinates(city);
       getForecastandPrecipitation(lon, lat);
@@ -68,25 +66,24 @@ function App() {
       setError(true);
     }
   }
-
+  // returns de first city with that zip code
   async function getCity(zip) {
-    const { data } = await axios.get(
+    const { data }  = await axios.get(
       `${zipApi.base}/search?apikey=${zipApi.key}&codes=${zip}`
-    );
-    return { data };
+    )
+    const zipCity = data.results[zip][0].city
+    
+    return { zipCity };
   }
 
   async function searchByZip(zip) {
     try {
-      const { data } = await getCity(zip);
-      setZipCity(data.results[zip][0].city);
-
+      const { zipCity } = await getCity(zip);
       const { lon, lat } = await getCurrentWeatherandCoordinates(zipCity);
       getForecastandPrecipitation(lon, lat);
       setError(false);
     } catch (err) {
       setError(true);
-      console.log("err", err);
     }
   }
 
