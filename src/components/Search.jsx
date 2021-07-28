@@ -24,6 +24,7 @@ function Search() {
   }
 
   return (
+    
     <div className="search-box">
       <input
         className="search-bar"
@@ -41,7 +42,8 @@ function Search() {
         value={zip}
         onKeyPress={handleKeyPressZip}
       ></input>
-    </div>
+      </div>
+ 
   );
 }
 

@@ -1,14 +1,17 @@
-import DayForecast from "./DayForecast";
-
 function Forecast({ forecast }) {
   console.log(forecast);
   return (
-    <div className="forecast">
-      {/* <p>Forecast</p> */}
-      <div className="forecast-container">
-        {forecast && forecast.map((day) => <DayForecast forecast={day} />)}
+    <>
+      <div>
+        <img
+          src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`}
+          alt="icon"
+        ></img>
+        <div>max. {Math.round(forecast.temp.max - 273.15)}°C</div>
+        <div>min. {Math.round(forecast.temp.min - 273.15)}°C</div>
+        <div>{forecast.weather[0].description}</div>
       </div>
-    </div>
+</>
   );
 
   /* <div className="stats">

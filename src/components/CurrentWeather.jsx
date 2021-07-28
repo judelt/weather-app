@@ -1,3 +1,5 @@
+import { dateBuilder } from "../helpers/helpers";
+
 function CurrentWeather({
   cityName,
   country,
@@ -16,6 +18,7 @@ function CurrentWeather({
       <div className="location">
         {cityName}, {country}
       </div>
+      <div className="date">{dateBuilder(new Date())}</div>
       <div className="current-weather-container">
         <div className="temp">{Math.round(temp - 273.15)}°C</div>
         <div className="temp-min-max">

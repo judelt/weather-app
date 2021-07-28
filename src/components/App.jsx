@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CircularProgress } from "@material-ui/core";
 import useApplicationData from "../hooks/useApplicationData";
 import Search from "./Search";
@@ -7,7 +6,7 @@ import Forecast from "./Forecast";
 import "./App.css";
 
 function App() {
-  const { searchByCity, searchByZip, state } = useApplicationData();
+  const { state } = useApplicationData();
   const {
     currentWeather,
     wind_speed,
@@ -18,12 +17,11 @@ function App() {
     temp_min,
     humidity,
     precipitation,
+    forecast,
   } = state;
 
-  const [city, setCity] = useState("");
-  const [zip, setZip] = useState("");
-
   console.log("state", state);
+  console.log('forecast app', forecast)
 
   return (
     <div className="App">
@@ -42,7 +40,9 @@ function App() {
             wind_speed={wind_speed}
             precipitation={precipitation}
           />
-          <Forecast />
+          <Forecast
+            forecast={forecast}
+          />
         </>
       ) : (
         <div className="circularProgress">
