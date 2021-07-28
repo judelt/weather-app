@@ -9,6 +9,7 @@
 }
 
 .App {
+  padding-top: 2vh;
   text-align: center;
   background-color: var(--intital);
   transition: 0.4s ease-out;
@@ -23,7 +24,7 @@
 .search-box {
   display: flex;
   justify-content: center;
-  padding: 5% 5% 0 5%;
+  padding: 1% 5% 0 5%;
   margin-bottom: 2vw;
 }
 
@@ -96,3 +97,19 @@
 .stat p {
   margin: 0.5vh;
 } 
+.forecast{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+  margin-top: 2vh;
+  border-top: #F8F8FF solid 1px;
+}
+.forecast-container {
+  width: 80vw;
+  padding: 1vw;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+
+}
