@@ -1,0 +1,100 @@
+:root {
+  --extreme-warm-temp: #ff531f;
+  --warm-temp: #ffae00;
+  --medium-temp: #ffd166;
+  --cold-temp: #118ab2;
+  --very-cold-temp: #274c77;
+  --extreme-cold-temp: #cae9ff;
+  --intital: #2a9d8f;
+}
+
+.App {
+  text-align: center;
+  background-color: var(--intital);
+  transition: 0.4s ease-out;
+  height: 100%;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items:center;
+  padding: 5% 5% 0 5%;
+  margin-bottom: 2vw;
+}
+
+.search-box .search-bar {
+  /* width: 40vw; */
+  padding: 1vw;
+  margin: 0.5vw;
+
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+
+  font-size: 20px;
+
+  transition: 0.4s ease;
+}
+
+.search-box .search-bar:focus {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.location {
+  font-size: 2em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.date {
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.weather-container .temp {
+  position: relative;
+  display: inline-block;
+  /* margin-top: 30px auto; */
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  border-radius: 16px;
+
+  font-size: 102px;
+  font-weight: 300;
+
+  text-align: center;
+}
+
+.weather-container .description {
+   font-size: 1.5em;
+  font-weight: 300;
+}
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} */
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
