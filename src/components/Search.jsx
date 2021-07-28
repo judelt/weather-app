@@ -1,9 +1,7 @@
 import { useState } from "react";
-import useApplicationData from "../hooks/useApplicationData";
 import "./App.css";
 
-function Search() {
-  const { searchByCity, searchByZip } = useApplicationData();
+function Search({ searchByCity, searchByZip }) {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
 
@@ -24,7 +22,6 @@ function Search() {
   }
 
   return (
-    
     <div className="search-box">
       <input
         className="search-bar"
@@ -42,8 +39,7 @@ function Search() {
         value={zip}
         onKeyPress={handleKeyPressZip}
       ></input>
-      </div>
- 
+    </div>
   );
 }
 

@@ -12,13 +12,12 @@ function CurrentWeather({
   wind_speed,
   precipitation,
 }) {
-
   return (
     <>
       <div className="location">
         {cityName}, {country}
       </div>
-      <div className="date">{dateBuilder(new Date())}</div>
+      <div className="date">{dateBuilder()}</div>
       <div className="current-weather-container">
         <div className="temp">{Math.round(temp - 273.15)}°C</div>
         <div className="temp-min-max">
@@ -28,15 +27,15 @@ function CurrentWeather({
         <div className="description">{description}</div>
         <div className="stats">
           <div className="stat">
-            <p>Humidity:</p>
+            <p>Humidity</p>
             <p>{humidity}%</p>
           </div>
           <div className="stat">
-            <p>Wind Speed:</p>
+            <p>Wind Speed</p>
             <p>{wind_speed}MPH</p>
           </div>
           <div className="stat">
-            <p>Precipitation:</p>
+            <p>Precipitation</p>
             <p>{precipitation}%</p>
           </div>
         </div>

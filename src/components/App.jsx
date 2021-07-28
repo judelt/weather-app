@@ -1,12 +1,95 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { CircularProgress } from "@material-ui/core";
-import useApplicationData from "../hooks/useApplicationData";
 import Search from "./Search";
 import CurrentWeather from "./CurrentWeather";
 import Forecast from "./Forecast";
 import "./App.css";
 
+const api = {
+  key: process.env.REACT_APP_WEATHER_API_KEY,
+  base: process.env.REACT_APP_WEATHER_API_BASE,
+};
+
+const zipApi = {
+  key: process.env.REACT_APP_ZIP_API_KEY,
+  base: process.env.REACT_APP_ZIP_API_BASE,
+};
+
 function App() {
-  const { state } = useApplicationData();
+  const [state, setState] = useState({});
+  const [error, setError] = useState(false);
+  const [zipCity, setZipCity] = useState("");
+
+  //Default location. Loads on first render
+  useEffect(() => {
+    searchByCity("toronto");
+  }, []);
+
+  async function getCurrentWeatherandCoordinates(city) {
+    const { data } = await axios.get(
+      `${api.base}/weather?q=${city}&appid=${api.key}`
+    );
+    setState((prev) => ({
+      ...prev,
+      currentWeather: data.weather[0], //description, icon, id, main
+      wind_speed: data.wind.speed,
+      cityName: data.name,
+      sys: data.sys, //type, id, country, sunrise, sunset
+      temp: data.main.temp,
+      temp_max: data.main.temp_max,
+      temp_min: data.main.temp_min,
+      humidity: data.main.humidity,
+    }));
+    const lon = data.coord.lon;
+    const lat = data.coord.lat;
+    return { lon, lat };
+  }
+
+  async function getForecastandPrecipitation(lon, lat) {
+    const { data } = await axios.get(
+      `${api.base}/onecall?lat=${lat}&lon=${lon}&appid=${api.key}`
+    );
+
+    setState((prev) => ({
+      ...prev,
+      forecast: data.daily,
+      precipitation: data.minutely[0].precipitation,
+    }));
+  }
+
+  async function searchByCity(city) {
+    console.log('searchByCity')
+    try {
+      const { lon, lat } = await getCurrentWeatherandCoordinates(city);
+      getForecastandPrecipitation(lon, lat);
+      setError(false);
+    } catch (err) {
+      setError(true);
+    }
+  }
+
+  async function getCity(zip) {
+    const { data } = await axios.get(
+      `${zipApi.base}/search?apikey=${zipApi.key}&codes=${zip}`
+    );
+    return { data };
+  }
+
+  async function searchByZip(zip) {
+    try {
+      const { data } = await getCity(zip);
+      setZipCity(data.results[zip][0].city);
+
+      const { lon, lat } = await getCurrentWeatherandCoordinates(zipCity);
+      getForecastandPrecipitation(lon, lat);
+      setError(false);
+    } catch (err) {
+      setError(true);
+      console.log("err", err);
+    }
+  }
+
   const {
     currentWeather,
     wind_speed,
@@ -20,14 +103,12 @@ function App() {
     forecast,
   } = state;
 
-  console.log("state", state);
-  console.log('forecast app', forecast)
-
   return (
     <div className="App">
       {cityName ? (
         <>
-          <Search />
+          <Search searchByCity={searchByCity} searchByZip={searchByZip} />
+          {error && <p className='error'>Invalid city or zip code</p>}
           <CurrentWeather
             cityName={cityName}
             country={sys.country}
@@ -40,13 +121,11 @@ function App() {
             wind_speed={wind_speed}
             precipitation={precipitation}
           />
-          <Forecast
-            forecast={forecast}
-          />
+          <Forecast forecast={forecast}/>
         </>
       ) : (
-        <div className="circularProgress">
-          <CircularProgress />
+        <div className="circularProgress-container">
+          <CircularProgress/>
         </div>
       )}
     </div>
